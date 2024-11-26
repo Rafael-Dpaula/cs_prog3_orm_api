@@ -6,12 +6,12 @@ class JogadorController {
     async store(req: Request, res: Response){
     
         const repository = getRepository(Jogador);
-        const { nickname, senha, pontos } = req.body;
+        const { nickname, senha, quantpontos, quantdinheiro, data_cadastro, data_ultimo_login, situacao} = req.body;
         const nicknameExists = await repository.findOne({ where: { nickname } });
         if (nicknameExists) {
             return res.sendStatus(409);
         }
-        const j = repository.create({ nickname, senha, pontos }); //cria a entidade
+        const j = repository.create({ nickname, senha, quantpontos, quantdinheiro, data_cadastro, data_ultimo_login, situacao }); //cria a entidade
         Jogador
         await repository.save(j); //persiste a entidade na tabela.
         return res.json(j);

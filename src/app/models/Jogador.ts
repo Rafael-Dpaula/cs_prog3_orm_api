@@ -13,15 +13,21 @@ class Jogador {
     senha: string;
 
     @Column('int')
-    pontos: number;
+    quantpontos: number;
+
+    @Column("int")
+    quantdinheiro: number;
+    
+    //coluna opcional, caso nao seja informado data, vai recebere a data corrente.
+    @Column('date', { default: () => 'CURRENT_TIMESTAMP' })
+    data_cadastro: Date;
 
     //coluna opcional
     @Column('date', { nullable: true })
     data_ultimo_login: Date;
 
-    //coluna opcional, caso nao seja informado data, vai recebere a data corrente.
-    @Column('date', { default: () => 'CURRENT_TIMESTAMP' })
-    data_cadastro: Date;
+    @Column('text')
+    situacao: string;
 
     //associação (flecha)
     @ManyToOne(type => Endereco)
