@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import Patente from '../models/Patente';
+import Compra from '../models/Compra';
 
-class PatenteController {
+class CompraController {
 
     async store(req: Request, res: Response) {
 
-        const repository = getRepository(Patente);
+        const repository = getRepository(Compra);
 
-        const { id, nome, cor } = req.body;
+        const { id, data, total } = req.body;
 
         const idExists = await repository.findOne({ where: { id } });
 
@@ -25,7 +25,7 @@ class PatenteController {
     }
 
     async list(req: Request, res: Response){
-        const repository = getRepository(Patente);
+        const repository = getRepository(Compra);
 
         const lista = await repository.createQueryBuilder('tb_jogador');
 
@@ -34,4 +34,4 @@ class PatenteController {
 
 }
 
-export default new PatenteController();
+export default new CompraController();
