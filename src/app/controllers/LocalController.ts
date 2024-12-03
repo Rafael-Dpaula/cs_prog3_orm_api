@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import Endereco from '../models/Endereco';
+import Local from '../models/Local';
 
-class EnderecoController {
+class LocalController {
 
     async store(req: Request, res: Response) {
-        const repository = getRepository(Endereco);//recupera o repositorio de Endereço
+        const repository = getRepository(Local);//recupera o repositorio de Endereço
         //console.log(req.body);
 
         const end = repository.create(req.body);
@@ -18,7 +18,7 @@ class EnderecoController {
 
     async list(req: Request, res: Response) {
         
-        const repository = getRepository(Endereco);
+        const repository = getRepository(Local);
 
         const lista = await repository.find();
 
@@ -27,7 +27,7 @@ class EnderecoController {
 
     async delete(req: Request, res: Response){
         try{
-            const repository = getRepository(Endereco);
+            const repository = getRepository(Local);
             const {id} = req.body;
             const end = await repository.findOne({where : {"id" : id }});
             if(end){
@@ -46,7 +46,7 @@ class EnderecoController {
 
     async update(req: Request, res: Response) {
 
-        const repository = getRepository(Endereco);//recupera o repositorio do PAtente.
+        const repository = getRepository(Local);//recupera o repositorio do PAtente.
 
         const { id } = req.body;//extrai os atributos id do corpo da mensagem
 
@@ -63,6 +63,7 @@ class EnderecoController {
         return res.json(p);
     }
 
+
 }
 
-export default new EnderecoController();
+export default new LocalController();

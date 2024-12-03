@@ -1,5 +1,9 @@
 import express from 'express';
 const app = express();
+app.use(express.json()); 
+
+const cors = require('cors');
+app.use(cors({origin: '*'}));
 
 import 'reflect-metadata';
 
@@ -8,7 +12,6 @@ import './database/connect'
 import routes from './routes';
 app.use(routes); // depois da definição do parser via json.
 
-app.use(express.json());
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, XRequested-With, Content-Type, Accept');

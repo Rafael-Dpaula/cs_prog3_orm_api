@@ -1,34 +1,26 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import Artefato from '../models/Artefato';
+import Compra from '../models/Compra';
 
 class ArtefatoController {
 
-    async store(req: Request, res: Response) {
+    async store(req: Request, res: Response){
 
-        const repository = getRepository(Artefato);
+        const repository = getRepository(Artefato);//recupera o repositorio de Endereço
+        //console.log(req.body);
+        const end = repository.create(req.body);
+        await repository.save(end);
+        return res.json(end);
+    }    
 
-        const { id, nome, peso, valor } = req.body;
-
-        const idExists = await repository.findOne({ where: { id } });
-
-        if (idExists) {
-
-            return res.sendStatus(409);
-
-        }
-
-        const p = repository.create(req.body);
-
-        await repository.save(p);
-        return res.json(p);
-    }
 
     async list(req: Request, res: Response){
-        const repository = getRepository(Artefato);
 
-        const lista = await repository.createQueryBuilder('tb_jogador');
+        const repository = getRepository(Compra);
 
+        const lista = await repository.find();
+        
         return res.json(lista);
     }
 

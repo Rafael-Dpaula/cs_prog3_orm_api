@@ -7,19 +7,25 @@ import CompraController from './app/controllers/CompraController';
 const router = Router();
 
 router.get('/jogador/:nickname', JogadorController.find);
-router.get('/listjogadores', JogadorController.list);
+router.get('/listjogador', JogadorController.list);
+router.post('/insertjogador', JogadorController.store);
+router.post('/loginjogador', JogadorController.login);
+router.post('/updatejogador', JogadorController.update);
+router.get('/deletejogador/:nickname', JogadorController.delete);
 
-/*
-router.post('/StorePatente', PatenteController.store);
-router.post('/ListPatente', PatenteController.list);
+router.post('/storepatente', PatenteController.store);
+router.post('/findpatente', PatenteController.find);
+router.get('/listpatente', PatenteController.list);
+router.post('/updatepatente', PatenteController.update);
+router.get('/deletepatente/:id', PatenteController.delete);
 
-router.post('/StoreEndereco', EnderecoController.store);
-router.post('/ListEndereco', EnderecoController.list);
+router.post('/storeendereco', EnderecoController.store);
+router.get('/listendereco', EnderecoController.list);
 
-router.post('/StoreArtefato', ArtefatoController.store);
-router.post('/ListArtefato', ArtefatoController.list);
+router.post('/storeartefato', ArtefatoController.store);
+router.get('/listartefato', ArtefatoController.list);
 
-router.post('/StoreCompra', CompraController.store);
-router.post('/ListCompra', CompraController.list);
-*/
+router.post('/storecompra', CompraController.store);
+router.get('/listcompra', CompraController.list);
+
 export default router;

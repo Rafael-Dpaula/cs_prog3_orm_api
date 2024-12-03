@@ -4,31 +4,22 @@ import Compra from '../models/Compra';
 
 class CompraController {
 
-    async store(req: Request, res: Response) {
+    async store(req: Request, res: Response){
 
-        const repository = getRepository(Compra);
+        const repository = getRepository(Compra);//recupera o repositorio de Endereço
+        //console.log(req.body);
+        const end = repository.create(req.body);
+        await repository.save(end);
+        return res.json(end);
+    }    
 
-        const { id, data, total } = req.body;
-
-        const idExists = await repository.findOne({ where: { id } });
-
-        if (idExists) {
-
-            return res.sendStatus(409);
-
-        }
-
-        const p = repository.create(req.body);
-
-        await repository.save(p);
-        return res.json(p);
-    }
 
     async list(req: Request, res: Response){
+
         const repository = getRepository(Compra);
 
-        const lista = await repository.createQueryBuilder('tb_jogador');
-
+        const lista = await repository.find();
+        
         return res.json(lista);
     }
 

@@ -10,7 +10,7 @@ class JogadorController {
 
         const nickname = req.params.nickname;
 
-        const j = await repository.createQueryBuilder('tb_jogador').where({"nickname" : nickname});
+        const j = await repository.createQueryBuilder('tb_jogador').where({"nickname" : nickname}).innerJoinAndSelect("tb_jogador.endereco", "endereco").leftJoinAndSelect("tb_jogador.patentes", "patente").getOne();
 
         if(j){     
             console.log(j);      
@@ -23,7 +23,7 @@ class JogadorController {
     async list(req: Request, res: Response){
         const repository = getRepository(Jogador);
 
-        const lista = await repository.createQueryBuilder('tb_jogador');
+        const lista = await repository.createQueryBuilder('tb_jogador').innerJoinAndSelect("tb_jogador.endereco", "endereco").leftJoinAndSelect("tb_jogador.patentes", "patente").getMany();
 
         return res.json(lista);
     }
@@ -102,6 +102,22 @@ class JogadorController {
         }
         
     }
+
+    async login(req: Request, res: Response){
+        const repository = getRepository(Jogador);
+
+        const {nickname, senha} = req.body;
+        const j = await repository.findOne(
+            {where : {"nickname" : nickname, "senha" : senha }});
+
+        if(j){           
+          //  res.sendStatus(201);
+            return res.json(j);
+        }else{
+            return res.sendStatus(204);
+        }
+    }
+
  
 
 
