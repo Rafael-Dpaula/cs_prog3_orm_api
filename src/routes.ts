@@ -4,6 +4,7 @@ import PatenteController from './app/controllers/PatenteController';
 import EnderecoController from './app/controllers/EnderecoController';
 import ArtefatoController from './app/controllers/ArtefatoController';
 import CompraController from './app/controllers/CompraController';
+import LocalController from './app/controllers/LocalController';
 const router = Router();
 
 router.get('/jogador/:nickname', JogadorController.find);
@@ -13,19 +14,24 @@ router.post('/loginjogador', JogadorController.login);
 router.post('/updatejogador', JogadorController.update);
 router.get('/deletejogador/:nickname', JogadorController.delete);
 
-router.post('/storepatente', PatenteController.store);
-router.post('/findpatente', PatenteController.find);
+router.post('/insertpatente', PatenteController.store);
+router.post('/patente/:nome', PatenteController.find);
 router.get('/listpatente', PatenteController.list);
 router.post('/updatepatente', PatenteController.update);
 router.get('/deletepatente/:id', PatenteController.delete);
 
-router.post('/storeendereco', EnderecoController.store);
+router.post('/insertendereco', EnderecoController.store);
 router.get('/listendereco', EnderecoController.list);
 
-router.post('/storeartefato', ArtefatoController.store);
+router.post('/insertartefato', ArtefatoController.store);
 router.get('/listartefato', ArtefatoController.list);
 
-router.post('/storecompra', CompraController.store);
+router.post('/insertcompra', CompraController.store);
 router.get('/listcompra', CompraController.list);
+
+router.get('/listlocais', LocalController.list)
+router.post('/updatelocal', LocalController.update)
+router.post('/deletelocal/:id', LocalController.delete)
+router.post('/insertlocal', LocalController.store)
 
 export default router;

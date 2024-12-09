@@ -13,6 +13,6 @@ class Local {
     latitude: string;
 
     @Column("varchar")
-    logitude: string;
+    longitude: string;
 }
 export default Local;
