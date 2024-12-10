@@ -60,7 +60,7 @@ class PatenteController {
 
         const repository = getRepository(Patente);//recupera o repositorio do jogador.
 
-        const { id } = req.body;//extrai os atributos nickname e endereco do corpo da mensagem.
+        const  id  = req.params.id;//extrai os atributos nickname e endereco do corpo da mensagem.
 
         const idExists = await repository.findOne({ where: { id } });//consulta na tabela se existe um registro com o mesmo nickname da mensagem.
 

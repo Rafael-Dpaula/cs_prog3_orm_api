@@ -28,7 +28,7 @@ class LocalController {
     async delete(req: Request, res: Response){
         try{
             const repository = getRepository(Local);
-            const {id} = req.body;
+            const id = req.params.id;
             const end = await repository.findOne({where : {"id" : id }});
             if(end){
                 await repository.remove(end);
