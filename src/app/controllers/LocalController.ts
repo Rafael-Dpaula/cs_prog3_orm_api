@@ -25,6 +25,21 @@ class LocalController {
         return res.json(lista);
     }
 
+    async find(req: Request, res: Response){
+        const repository = getRepository(Local);
+
+        const id = req.params.id;
+
+        const j = await repository.findOne({where : {id}});
+
+        if(j){     
+            console.log(j);      
+            return res.json(j);
+        }else{
+            return res.sendStatus(204);
+        }
+    };
+
     async delete(req: Request, res: Response){
         try{
             const repository = getRepository(Local);

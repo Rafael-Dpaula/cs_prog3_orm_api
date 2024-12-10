@@ -20,7 +20,7 @@ class Jogador {
     data_cadastro: Date;
 
     //coluna opcional
-    @Column('date', { nullable: true })
+    @Column('date', { nullable: true, default: () => 'CURRENT_TIMESTAMP' })
     data_ultimo_login: Date;
 
     //associação (flecha)

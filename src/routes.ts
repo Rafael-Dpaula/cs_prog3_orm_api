@@ -15,7 +15,7 @@ router.post('/updatejogador', JogadorController.update);
 router.get('/deletejogador/:nickname', JogadorController.delete);
 
 router.post('/insertpatente', PatenteController.store);
-router.post('/patente/:nome', PatenteController.find);
+router.get('/patente/:id', PatenteController.find);
 router.get('/listpatente', PatenteController.list);
 router.post('/updatepatente', PatenteController.update);
 router.get('/deletepatente/:id', PatenteController.delete);
@@ -30,6 +30,7 @@ router.post('/insertcompra', CompraController.store);
 router.get('/listcompra', CompraController.list);
 
 router.get('/listlocais', LocalController.list)
+router.get('/locais/:id', LocalController.find);
 router.post('/updatelocal', LocalController.update)
 router.post('/deletelocal/:id', LocalController.delete)
 router.post('/insertlocal', LocalController.store)

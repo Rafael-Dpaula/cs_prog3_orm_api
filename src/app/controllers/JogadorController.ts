@@ -49,20 +49,20 @@ class JogadorController {
 
     async update(req: Request, res: Response){
     
-        const repository = getRepository(Jogador);//recupera o repositorio do jogador.
-    
-        const {nickname} = req.body;//extrai os atributos id do corpo da mensagem
-    
-        const nicknameExists = await repository.findOne({where :{nickname}});//consulta na tabela se existe um registro com o mesmo nickname.
-        
-        if(!nicknameExists){
+        const repository = getRepository(Jogador);//recupera o repositorio do PAtente.
+
+        const { nickname } = req.body;//extrai os atributos id do corpo da mensagem
+
+        const idExists = await repository.findOne({ where: { nickname } });//consulta na tabela se existe um registro com o mesmo id.
+
+        if (!idExists) {
             return res.sendStatus(404);
         }
-        
+
         const j = repository.create(req.body); //cria a entidade Jogador
-        
+
         await repository.save(j); //persiste (update) a entidade na tabela.
-        
+
         return res.json(j);
     }
 
